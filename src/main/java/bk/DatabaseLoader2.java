@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by quangminh on 16/11/2017.
@@ -19,11 +21,10 @@ public class DatabaseLoader2 implements CommandLineRunner {
     @Autowired
     PaperRepository paperRepository;
 
-
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        if (paperRepository.count() == 0) {
+        if (false) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -59,8 +60,11 @@ public class DatabaseLoader2 implements CommandLineRunner {
                     paper.setUrl(rs.getString("url"));
                     paper.setIssn(rs.getString("issn"));
                     paper.setKeywords(rs.getString("keywords"));
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(paper.getDate());
+                    int year = cal.get(Calendar.YEAR);
+                    paper.setYear(year);
                     paperRepository.save(paper);
-                    Thread.sleep(200);
                 } catch (Exception e) {
                     System.out.println(e);
                 }

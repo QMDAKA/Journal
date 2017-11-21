@@ -22,7 +22,7 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        if(authorRepository.count()==0) {
+        if(false) {
             System.out.println("-------- MySQL JDBC Connection Testing ------------");
 
             try {
@@ -61,7 +61,6 @@ public class DatabaseLoader implements CommandLineRunner {
                     author.setSubject(rs.getString("subjects"));
                     author.setUrl(rs.getString("url"));
                     authorRepository.save(author);
-                    Thread.sleep(200);
                 } catch (Exception e) {
                     System.out.println(e);
                 }

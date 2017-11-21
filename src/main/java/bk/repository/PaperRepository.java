@@ -8,5 +8,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  * Created by quangminh on 16/11/2017.
  */
 @RepositoryRestResource
-public interface PaperRepository  extends JpaRepository<Paper,Long>{
+public interface PaperRepository  extends JpaRepository<Paper,String>{
+    Paper findById(String id);
 }
+

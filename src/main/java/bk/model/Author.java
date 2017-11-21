@@ -2,6 +2,7 @@ package bk.model;
 
 import org.springframework.data.domain.Page;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -14,8 +15,8 @@ import java.util.List;
 @Entity
 public class Author {
     @Id
+    @Column(unique = true)
     String id;
-
     String givenName;
     String surname;
     String email;

@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 public class Paper {
     @Id
+    @Column(unique = true)
     String id;
 
     Date date;
